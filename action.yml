@@ -1,0 +1,22 @@
+name: 'Adjust Version in Package JSON'
+description: 'A Github action that allows the addition of metadata to a package.json version field.'
+inputs:
+  extendedTag:
+    description: 'A string depicting the tag you want to add to the version string.'
+    required: true
+    default: 'dev'
+  # buildNumber:
+  #   description: 'add the build number to your release'
+  #   required: false
+  #   default: null
+outputs:
+  version:
+    description: 'Updated version number for the package.json file'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.extendedTag}}
+branding:
+  icon: 'package'
+  color: 'blue'
