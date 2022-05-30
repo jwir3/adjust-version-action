@@ -4,7 +4,11 @@ inputs:
   extendedTag:
     description: 'A string depicting the tag you want to add to the version string.'
     required: true
-    default: 'dev'
+    default: ''
+  appendSha:
+    description: 'Whether or not to append the last 7 characters of the GITHUB_SHA to the extendedTag'
+    required: false
+    default: false
   # buildNumber:
   #   description: 'add the build number to your release'
   #   required: false

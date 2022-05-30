@@ -24,6 +24,7 @@ jobs:
         uses: ./
         with:
           extendedTag: "dev"
+          appendSha: true
         # with:
           # metadataString: 'heythere'
       # jq is needed for the package-bump-version script

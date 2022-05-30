@@ -1,6 +1,6 @@
 {
   "name": "adjust-version-action",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A dummy package.json that can be used for testing adjust-version-action.",
   "main": "index.js",
   "scripts": {

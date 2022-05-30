@@ -11,6 +11,8 @@
 #   the version conforms to the semver specification.
 
 EXTENDED_TAG=${INPUT_EXTENDEDTAG}
+INCLUDE_SHA=${INPUT_APPENDSHA}
+
 # echo "Hello from github action: ${METADATA_STRING}"
 WORKDIR=`pwd`
 
@@ -21,6 +23,12 @@ CURRENT_VERSION=$(cat package.json | grep "\"version\"" | tr -cd "[[:digit:].]")
 
 VERSION_ITERATOR=$([[ ${GITHUB_RUN_ATTEMPT} -gt ${GITHUB_RUN_NUMBER} ]] && echo ${GITHUB_RUN_ATTEMPT} || echo ${GITHUB_RUN_NUMBER})
 NEW_VERSION="${CURRENT_VERSION}-${EXTENDED_TAG}${VERSION_ITERATOR}"
+
+if [ ${INPUT_APPENDSHA} ]
+then
+  FILTERED_SHA=$(echo ${GITHUB_SHA} | sed 's,.*\(.\{7\}\)$,\1,')
+  NEW_VERSION=${NEW_VERSION}.${FILTERED_SHA}
+fi
 
 # Verify that it's semver-certified
 VALID_VERSION=`npx semver $NEW_VERSION`
